@@ -1,71 +1,47 @@
-# Pot-App 文字识别插件模板仓库 (以 [OCR Space](https://ocr.space/) 为例)
+# Pot-App OpenAI OCR 插件
 
-### 此仓库为模板仓库，编写插件时可以直接由此仓库创建插件仓库
+基于 OpenAI 兼容接口的 Pot-App 文字识别插件。
 
-## 插件编写指南
+## 功能说明
 
-### 1. 插件仓库创建
+- 支持通过 OpenAI 兼容 API 进行图片文字识别
+- 支持主接口与备用接口配置
+- 支持多语言图片文本识别
+- 适用于 Pot-App 的外部 OCR 插件安装方式
 
-- 以此仓库为模板创建一个新的仓库
-- 仓库名为 `pot-app-recognize-plugin-<插件名>`，例如 `pot-app-recognize-plugin-ocrspace`
+## 使用方法
 
-### 2. 插件信息配置
+1. 下载或获取插件文件 `plugin.com.pot-app.openai-ocr.potext`
+2. 打开 `Pot` → `偏好设置` → `服务设置` → `翻译`
+3. 选择 `添加外部插件` → `安装外部插件`
+4. 选择 `plugin.com.pot-app.openai-ocr.potext` 文件
+5. 安装成功后，将插件添加到服务列表即可使用
 
-编辑 `info.json` 文件，修改以下字段：
+## 插件配置
 
-- `id`：插件唯一 id，必须以`[plugin]`开头，例如 `[plugin].com.pot-app.ocrspace`
-- `display`: 插件显示名称，例如 `OCR Space`
-- `homepage`: 插件主页，填写你的仓库地址即可，例如 `https://github.com/pot-app/pot-app-recognize-plugin-template`
-- `icon`: 插件图标，填写当前目录下的图标名称，例如 `icon.png`
-- `needs`: 插件依赖，一个数组，每个依赖为一个对象，包含以下字段：
-  - `key`: 依赖 key，对应该项依赖在配置文件中的名称，例如 `apikey`
-  - `display`: 依赖显示名称，对应用户显示的名称，例如 `API Key`
-  - `type`: 组件类型 `input` | `select`
-  - `options`: 选项列表(仅 select 组件需要)，例如 `{"engine_a":"Engina A","engine_b":"Engina B"}`
-- `language`: 插件支持的语言映射，将 pot 的语言代码和插件发送请求时的语言代码一一对应
+安装后，你需要根据所使用的平台填写以下配置：
 
-### 3. 插件编写/编译
+- `Preset`：接口预设，可选 OpenAI Compatible / SiliconFlow
+- `API URL`：接口地址，默认是 `https://api.openai.com`
+- `API Key`：你的接口密钥
+- `Model`：要使用的模型名称，例如 `gpt-4o`
+- `Backup API URL`：备用接口地址，可选
+- `Backup API Key`：备用接口密钥，可选
+- `Backup Model`：备用模型名称，可选
 
-编辑 `main.js` 实现 `recognize` 函数
+## 仓库内容
 
-#### Input parameters
+- `main.js`：插件主逻辑
+- `info.json`：插件元信息与配置项定义
+- `icon.png`：插件图标
+- `plugin.com.pot-app.openai-ocr.potext`：打包后的插件文件
 
-```javascript
-// config: config map
-// detect: detected source language
-// setResult: function to set result text
-// utils: some tools
-//     http: tauri http module
-//     readBinaryFile: function
-//     readTextFile: function
-//     Database: tauri Database class
-//     CryptoJS: CryptoJS module
-//     cacheDir: cache dir path
-//     pluginDir: current plugin dir 
-//     osType: "Windows_NT" | "Darwin" | "Linux"
-async function recognize(base64, lang, options) {
-  const { config, utils } = options;
-  const { http, readBinaryFile, readTextFile, Database, CryptoJS, run, cacheDir, pluginDir, osType } = utils;
-  const { fetch, Body } = http;
-}
-```
+## 安装说明
 
-#### Return value
+- 本仓库同时包含源码和已打包的 `.potext` 插件文件
+- 若你只想使用插件，可直接安装仓库中的 `.potext` 文件
+- 若你想继续开发或修改插件，可基于本仓库源码进行维护
 
-```javascript
-return "result";
-```
+## 许可证
 
-### 4. 打包 pot 插件
-
-1. 将`main.js`文件和`info.json`以及图标文件压缩为 zip 文件。
-
-2. 将文件重命名为`<插件id>.potext`，例如`plugin.com.pot-app.ocrspace.potext`,即可得到 pot 需要的插件。
-
-## 自动编译打包
-
-本仓库配置了 Github Actions，可以实现推送后自动编译打包插件。
-
-每次将仓库推送到 GitHub 之后 actions 会自动运行，将打包好的插件上传到 artifact，在 actions 页面可以下载
-
-每次提交 Tag 之后，actions 会自动运行，将打包好的插件上传到 release，在 release 页面可以下载打包好的插件
+本项目使用仓库内的 `LICENSE` 许可证。
