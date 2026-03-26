@@ -1,0 +1,72 @@
+{
+  "id": "plugin.com.pot-app.openai-ocr",
+  "plugin_type": "recognize",
+  "icon": "icon.png",
+  "display": "OpenAI OCR",
+  "homepage": "https://github.com/Galaxy-haier/pot-app-recognize-plugin-openai-ocr",
+  "needs": [
+    {
+      "key": "api_format",
+      "display": "环境预设 (Preset)",
+      "type": "select",
+      "options": {
+        "openai": "OpenAI 兼容平台 (OpenAI Compatible)",
+        "siliconflow": "硅基流动 (SiliconFlow)"
+      },
+      "default": "openai"
+    },
+    {
+      "key": "api_url",
+      "display": "主 API URL (选填, 短链接自动补全)",
+      "type": "input",
+      "default": "https://api.openai.com"
+    },
+    {
+      "key": "api_key",
+      "display": "主 API Key",
+      "type": "input"
+    },
+    {
+      "key": "model",
+      "display": "主 模型名称 (Model)",
+      "type": "input",
+      "default": "gpt-4o"
+    },
+    {
+      "key": "backup_api_url",
+      "display": "备用 API URL (选填, 留空同上)",
+      "type": "input"
+    },
+    {
+      "key": "backup_api_key",
+      "display": "备用 API Key (选填, 主崩溃时启用)",
+      "type": "input"
+    },
+    {
+      "key": "backup_model",
+      "display": "备用 模型名称 (选填, 留空同上)",
+      "type": "input"
+    }
+  ],
+  "language": {
+    "auto": "auto",
+    "zh_cn": "auto",
+    "zh_tw": "auto",
+    "en": "auto",
+    "ja": "auto",
+    "ko": "auto",
+    "fr": "auto",
+    "es": "auto",
+    "ru": "auto",
+    "de": "auto",
+    "it": "auto",
+    "tr": "auto",
+    "pt_pt": "auto",
+    "pt_br": "auto",
+    "vi": "auto",
+    "th": "auto",
+    "ar": "auto",
+    "hi": "auto",
+    "fa": "auto"
+  }
+}
